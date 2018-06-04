@@ -1,0 +1,196 @@
+<html>
+  <head>
+
+    <!--link abaixo é referente ao cdn do materialize css google-->
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css">
+
+      <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+      <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+      
+      
+      
+
+
+<style>
+
+.nav-wrapper{ background-color:brown;}
+
+.row{width: 700px;}
+
+.page-footer{background-color:brown;}
+
+.browser-default{width: 190px;}
+
+.collection{width: 900px;}
+
+/* label color */
+.input-field label {
+     color: rgb(226, 36, 36);
+   }
+   /* label focus color */
+   .input-field input[type=text]:focus + label {
+     color: rgb(196, 22, 22);
+   }
+   /* label underline focus color */
+   .input-field input[type=text]:focus {
+     border-bottom: 1px solid rgb(216, 4, 4);
+     box-shadow: 0 1px 0 0 rgb(216, 16, 16);
+   }
+   /* valid color */
+   .input-field input[type=text].valid {
+     border-bottom: 1px solid rgb(197, 15, 15);
+     box-shadow: 0 1px 0 0 rgb(228, 11, 11);
+   }
+   /* invalid color */
+   .input-field input[type=text].invalid {
+     border-bottom: 1px solid #000;
+     box-shadow: 0 1px 0 0 #000;
+   }
+   /* icon prefix focus color */
+   .input-field .prefix.active {
+     color: #000;
+   }
+
+
+</style>
+
+  </head>
+
+
+
+ 
+
+<!--A seguir o menu de opções-->
+      <nav>
+          <div class="nav-wrapper" align="center" >
+            <div align="center">
+              <img width="70"  alt="Angular Logo" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg==">
+              </div>
+            <ul id="nav-mobile" class="left hide-on-med-and-down">
+              
+             
+          
+            </ul>
+          </div>
+        </nav>        
+
+<!--Fim do menu-->
+
+<div style="text-align:center">
+  <h3>Bem vindo! Cadastro de empresas</h3> 
+</div>
+<body>
+<!--Formulario-->
+<form #f="ngForm" (submit)="form_submit(f)">
+<div class="row">
+    
+      <div class="row">
+        <div class="input-field col s6">
+          <input placeholder="Nome da empresa" ngModel name="nome" type="text" class="validate">
+          <label for="first_name"></label>
+        </div>
+        <div class="input-field col s6">
+            <input placeholder="Endereço da empresa" ngModel name="endereco" type="text" class="validate">
+            <label for="first_name"></label>
+          </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s12">
+          <input placeholder="CNPJ" ngModel name="cnpj" type="text" class="validate">
+        </div>
+      </div>
+    
+
+
+  <!--Combo de chekbox INATIVA e ATIVA-->
+     <!-- Switch -->
+
+
+  <div class="switch" align="center">
+     
+    <label>
+        <b>INATIVA</b> 
+        <input type="checkbox" ngModel name="situacao">
+        <span class="lever"></span>
+        <b>ATIVA</b>
+      </label>
+    </div> 
+    
+  </div><!--Fim do primeiro quadro-->
+     
+      
+  
+  <br/><br/>
+
+  <!--combo box Ramo de atividade-->
+       <div align="center">
+        <select class="browser-default" ngModel name="ramo">
+          <option value="" disabled selected><b>Ramo de atividade</b></option>
+          <option value="Industria">Industria</option>
+          <option value="Laboratorio">Laboratorio</option>
+          <option value="Banco">Banco</option>
+          <option value="Pagadora">Pagadora</option>
+          <option value="Outro">Outro</option>
+        </select>
+   </div>
+
+        <br/> <br/>
+  
+<div align="center">
+   <button type="submit" class="btn waves-effect waves-light" >CADASTRAR
+      <i class="material-icons right">send</i>
+</button>
+</div>
+
+
+</form>
+
+<br/>
+<!--Local de gravação temporaria do dados da empresa-->
+<div align="center">
+<ul class="collection">
+   
+        <ul>
+          <li *ngFor="let p of Documento">
+            {{'Empresa: ' +p.nome + ' - CNPJ: ' + p.cnpj + ' É ' + p.valido + ' - Endereço: '+ p.endereco + ' - Situação: ' + p.situacao + ' - Ramo: ' + p.ramo}}
+          </li>
+        </ul>
+  </ul>
+</div>
+
+  <footer class="page-footer">
+      <div class="container">
+        <div class="row">
+          <div class="col l6 s12">
+            <h5 class="white-text">Desenvolvimento Cassio Henrique</h5>
+            <p class="grey-text text-lighten-4">Analista de sistemas</p>
+          </div>
+          <div class="col l4 offset-l2 s12">
+            <h5 class="white-text"><b>Links</b></h5>
+            <ul>
+              <li><a class="grey-text text-lighten-3" href="./app.component.html">Cadastrar empresas</a></li>
+              
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="footer-copyright">
+        <div class="container" align="center">
+        © 2018 Accesstage
+
+        </div>
+      </div>
+    </footer>
+
+<!--link abaixo é referente ao cdn do materialize css google-->
+
+<script type="text/javascript" src="js/materialize.min.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script>
+
+
+    
+</body>
+</html>
